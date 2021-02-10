@@ -1,0 +1,28 @@
+FROM ubuntu:20.04
+
+ENV NUMBER_VERSION=21.0
+ENV NAME_VERSION=sidney
+ENV SEMANTIC_VERSION=10.4.0
+
+RUN apt-get -y update \
+    && apt-get -y install \
+    vim \
+    wget \
+    curl \
+    unzip \
+    build-essential \
+    zlib1g-dev \
+    libcurl3 \
+    libcurl4-gnutls-dev \
+    xterm \
+    && apt-get -y autoremove \
+    && apt-get -y autoclean
+RUN wget https://github.com/Valdeirsk8/docker-dev-delphi/releases/download/${SEMANTIC_VERSION}-${NAME_VERSION}/paserver_${NUMBER_VERSION}.tar.gz \
+    && tar -xzvf paserver_$NUMBER_VERSION.tar.gz \
+    && rm paserver_$NUMBER_VERSION.tar.gz
+
+WORKDIR /paserver
+
+EXPOSE 64211
+
+CMD ["./paserver", "-password="]
