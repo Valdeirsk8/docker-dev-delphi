@@ -12,16 +12,15 @@ RUN apt-get -y update \
     unzip \
     build-essential \
     zlib1g-dev \
-    libcurl3 \
     libcurl4-gnutls-dev \
     xterm \
     && apt-get -y autoremove \
     && apt-get -y autoclean
-RUN wget https://github.com/Valdeirsk8/docker-dev-delphi/releases/download/${SEMANTIC_VERSION}-${NAME_VERSION}/paserver_${NUMBER_VERSION}.tar.gz \
-    && tar -xzvf paserver_$NUMBER_VERSION.tar.gz \
-    && rm paserver_$NUMBER_VERSION.tar.gz
+RUN wget https://github.com/Valdeirsk8/docker-dev-delphi/releases/download/${SEMANTIC_VERSION}-${NAME_VERSION}/PAServer_${NUMBER_VERSION}.tar.gz \
+    && tar -xzvf PAServer_$NUMBER_VERSION.tar.gz \
+    && rm PAServer_$NUMBER_VERSION.tar.gz
 
-WORKDIR /paserver
+WORKDIR /PAServer-$NUMBER_VERSION
 
 EXPOSE 64211
 
