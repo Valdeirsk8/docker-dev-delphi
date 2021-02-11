@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 ENV NUMBER_VERSION=21.0
 ENV NAME_VERSION=sidney
@@ -14,6 +14,7 @@ RUN apt-get -y update \
     zlib1g-dev \
     libcurl4-gnutls-dev \
     xterm \
+    libmongoc-1.0-0 \
     && apt-get -y autoremove \
     && apt-get -y autoclean
 RUN wget https://github.com/Valdeirsk8/docker-dev-delphi/releases/download/${SEMANTIC_VERSION}-${NAME_VERSION}/PAServer_${NUMBER_VERSION}.tar.gz \
