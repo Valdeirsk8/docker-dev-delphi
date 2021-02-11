@@ -23,5 +23,6 @@ RUN wget https://github.com/Valdeirsk8/docker-dev-delphi/releases/download/${SEM
 WORKDIR /PAServer-$NUMBER_VERSION
 
 EXPOSE 64211
+EXPOSE 9000
 
 CMD ["./paserver", "-password="]
