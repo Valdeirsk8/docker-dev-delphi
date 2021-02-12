@@ -21,6 +21,9 @@ RUN wget https://github.com/Valdeirsk8/docker-dev-delphi/releases/download/${SEM
     && tar -xzvf PAServer_$NUMBER_VERSION.tar.gz \
     && rm PAServer_$NUMBER_VERSION.tar.gz
 
+RUN ln -s /usr/lib/x86_64-linux-gnu/libmongoc-1.0.so.0 /usr/lib/x86_64-linux-gnu/libmongoc-1.0.so
+RUN ln -s /usr/lib/x86_64-linux-gnu/libbson-1.0.so.0 /usr/lib/x86_64-linux-gnu/libbson-1.0.so
+
 WORKDIR /PAServer-$NUMBER_VERSION
 
 EXPOSE 64211
