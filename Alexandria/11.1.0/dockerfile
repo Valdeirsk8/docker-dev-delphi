@@ -1,0 +1,32 @@
+FROM ubuntu:18.04
+
+ENV NUMBER_VERSION=22.0
+ENV NAME_VERSION=alexandria
+ENV SEMANTIC_VERSION=11.1.0
+
+RUN apt-get -y update \
+    && apt-get -y install \
+    vim \
+    wget \
+    curl \
+    unzip \
+    build-essential \
+    zlib1g-dev \
+    libcurl4-gnutls-dev \
+    xterm \
+    libmongoc-1.0-0 \
+    && apt-get -y autoremove \
+    && apt-get -y autoclean
+RUN wget https://github.com/Valdeirsk8/docker-dev-delphi/releases/download/${SEMANTIC_VERSION}-${NAME_VERSION}/PAServer_${NUMBER_VERSION}.tar.gz \
+    && tar -xzvf PAServer_$NUMBER_VERSION.tar.gz \
+    && rm PAServer_$NUMBER_VERSION.tar.gz
+
+RUN ln -s /usr/lib/x86_64-linux-gnu/libmongoc-1.0.so.0 /usr/lib/x86_64-linux-gnu/libmongoc-1.0.so
+RUN ln -s /usr/lib/x86_64-linux-gnu/libbson-1.0.so.0 /usr/lib/x86_64-linux-gnu/libbson-1.0.so
+
+WORKDIR /PAServer-$NUMBER_VERSION
+
+EXPOSE 64211
+EXPOSE 9000
+
+CMD ["./paserver", "-password="]
